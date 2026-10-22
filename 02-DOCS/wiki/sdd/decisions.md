@@ -14,3 +14,4 @@
 | 2026-10-22 | Drive con permiso `drive.file` y correo con Gmail `gmail.send` (OAuth de la cuenta del dueño) | SMTP con contraseña de aplicación | Un solo inicio de sesión de Google; el bot solo ve los archivos que crea; sin guardar contraseñas. |
 | 2026-10-22 | El enlace de Drive solo se muestra al dueño; a los demás se les dice que está guardado | enlace a todos | Los demás no pueden abrir el Drive del dueño. Ajusta spec #1. |
 | 2026-10-22 | Cuando alguien sin acceso escribe, el dueño recibe un aviso con su nombre y el comando para autorizarle (sin el contenido) | sin aviso | El dueño no técnico no tiene otra forma fácil de saber el número de esa persona. |
+| 2026-10-22 | Revisión: candado de entrega, candado en la base de datos, aviso al dueño solo la primera vez, solo chats privados | — | Hallazgos de la fase review: duplicados por reintento simultáneo, acceso concurrente a SQLite, spam de avisos, grupos fuera de alcance. |

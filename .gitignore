@@ -41,3 +41,10 @@
 .claude/commands/learn.md
 .claude/commands/resume-session.md
 .claude/commands/save-session.md
+
+# Datos locales del bot (audios, base de datos)
+data/
+__pycache__/
+.venv/
+.pytest_cache/
+.ruff_cache/

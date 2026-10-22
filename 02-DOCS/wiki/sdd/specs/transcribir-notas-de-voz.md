@@ -6,7 +6,7 @@ tags: [sdd, spec]
 timestamp: 2026-10-22T20:30:00Z
 topic: sdd
 slug: transcribir-notas-de-voz
-status: clarified
+status: planned
 ---
 
 # Spec — Transcribir notas de voz y guardarlas en Drive y correo
