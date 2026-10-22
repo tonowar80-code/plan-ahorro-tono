@@ -1,65 +1,89 @@
 ---
 type: constitution
 title: plan-ahorro-tono — Constitution
-description: Draft written by rsc onboard from the accepted plan; not ratified.
+description: The non-negotiable principles every rsc-sdd phase obeys.
 tags: [sdd, constitution]
-timestamp: 2026-10-22T20:07:49Z
+timestamp: 2026-10-22T20:30:00Z
 topic: sdd
-status: draft
-version: draft
+version: v1.0.0
 ---
 
 # plan-ahorro-tono — Constitution
 
-> **borrador — complétalo con la fase `constitution` antes del primer SDD.**
-> Draft: complete it with the `constitution` phase before the first SDD feature. It holds only what
-> onboarding knew; it ratifies no principle. Ratifying it removes `status: draft` and starts at v1.0.0.
+> Version: v1.0.0 · Ratified: 2026-10-22 · Last amended: 2026-10-22
+> The non-negotiable principles every rsc-sdd phase obeys. Stack mechanics live in
+> `02-DOCS/wiki/stack/*` (none yet); this file ratifies the principle and links the detail.
 
-## Known facts (from onboarding)
-
-- Goal: un chatbot de mensajería (Telegram o WhatsApp)
-- Project kind: software · software scope: growing
-- How code changes land: straight on the default branch (`--workflow main`).
-- Stack evidence: No stack evidence was detected at install. To be decided in the `constitution` phase.
+Known facts from onboarding: goal «un chatbot de mensajería (Telegram o WhatsApp)», software,
+growing scope, changes land straight on the default branch, owner is non-technical.
 
 ## 1. Stack canon
 
-No stack evidence was detected at install. To be decided in the `constitution` phase.
+1. One language: Python 3.12, managed with `uv`; one lockfile (`uv.lock`), committed.
+   *Why:* the best-supported language for Telegram bots and local speech-to-text.
+2. The bot runs on the owner's own computer and needs no public address or paid server.
+   A dependency that requires a paid service or a server open to the internet is a MAJOR amendment.
+3. Messaging platform is Telegram. Adding WhatsApp is a MINOR amendment; replacing Telegram is MAJOR.
 
 ## 2. Quality bar
 
-_Pending — to be completed in the `constitution` phase._
+4. Code is formatted and lint-clean with `ruff` (format + check, zero findings) before every commit.
+5. Tests gate every change: `pytest` passes; each acceptance criterion of a spec has at least one
+   automated test. Outside services (Telegram, Google) are replaced by fakes in tests — tests
+   never need the internet or real accounts.
+6. One command checks everything: `scripts/verify.sh` (ruff + pytest). `verify` runs it.
 
 ## 3. Conventions
 
-_Pending — to be completed in the `constitution` phase._
+7. Code lives in `src/<package>/`, tests in `tests/`. Each outside service (Telegram, transcription,
+   Drive, email) sits behind its own small module so it can be faked or replaced.
+8. Commit messages: gitmoji + Conventional Commits — `✨ feat(scope): subject` (enforced by
+   the gitmoji guard).
+9. Messages the bot shows to people are in Spanish, short and plain.
 
 ## 4. Branching & shipping
 
-Chosen at install: straight on the default branch. _Pending — to be completed in the `constitution` phase._
+10. Changes land straight on the default branch (`--workflow main`), only after the Definition of
+    Done holds. (Exception: a session restricted to its own branch works there and the owner merges.)
+11. **Git authorship is the human's.** No `Co-Authored-By` an AI, no "generated with" footer.
+    Enforced at the `ship` phase.
 
 ## 5. Security & privacy floor
 
-_Pending — to be completed in the `constitution` phase._
+12. No secret is ever committed (bot token, Google credentials, email password). Secrets load from
+    `01-TOOLS/<provider>/.env` (gitignored).
+13. The bot only serves people on an allow-list the owner controls; anyone else gets a polite
+    refusal and nothing they send is processed or kept.
+14. Audio and transcripts never leave the owner's computer except to the owner's own Google Drive
+    and email. No third-party transcription service.
+15. Logs never contain transcript text, audio, tokens or passwords.
 
-## 6. UX / accessibility floor (if there is a UI)
+## 6. UX floor
 
-_Pending — to be completed in the `constitution` phase._
+16. Every message the bot receives gets a visible answer: a confirmation, a progress note for long
+    work, or a clear error. The bot never goes silent.
 
-## 7. Performance budgets (where they matter)
+## 7. Knowledge & decisions
 
-_Pending — to be completed in the `constitution` phase._
-
-## 8. Knowledge & decisions
-
-_Pending — to be completed in the `constitution` phase._
+17. Every significant decision is appended to `02-DOCS/wiki/sdd/decisions.md` (date, options,
+    why). The constitution is the highest-order decision record.
 
 ## Definition of Done (the merge bar `verify` runs against)
 
-_Pending — to be completed in the `constitution` phase._
+A change ships only when ALL hold:
+
+- [ ] `scripts/verify.sh` passes: ruff clean and all tests green (principles 4-6).
+- [ ] Every acceptance criterion of the spec has a passing test (principle 5).
+- [ ] Conventions followed (principles 7-9).
+- [ ] Authored by the human; landed per principle 10-11.
+- [ ] No secret committed; allow-list and privacy rules hold (principles 12-15).
+- [ ] The bot answers every message (principle 16).
+- [ ] Significant decisions logged (principle 17).
 
 ## Amendment log (append-only)
 
 | Date | Version | Change | Why |
 |------|---------|--------|-----|
 | 2026-10-22 | draft | Draft generated by `rsc onboard`. | The SDD floor needs a constitution; ratification is the `constitution` phase's. |
+| 2026-10-22 | draft | Principles 1-17 and Definition of Done proposed. | First feature (voice-note transcription) needs the house rules. Awaiting the owner's ratification. |
+| 2026-10-22 | v1.0.0 | Ratified by the owner («Sí, las acepto»). | Explicit yes on the summarised draft. |
