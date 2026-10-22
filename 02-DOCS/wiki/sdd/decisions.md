@@ -9,3 +9,8 @@
 | 2026-10-22 | Todo va al Drive y al correo del dueño, carpeta por persona | su correo, ambos correos | Elección del dueño. |
 | 2026-10-22 | Constitución v1.0.0 ratificada | — | Sí explícito del dueño. |
 | 2026-10-22 | Drive guarda Google Doc + audio original; acceso por comando del dueño en el bot | solo texto / .txt / lista en archivo | Respuestas del dueño en la fase specify. |
+| 2026-10-22 | Cola persistente de trabajos con un solo trabajador | paralelo sin persistencia | Mantiene el orden, no pierde audios si falla Drive/correo y retoma al arrancar. |
+| 2026-10-22 | Transcripción con faster-whisper (modelo `small` por defecto, configurable) | whisper original, vosk | Local, gratis, buen español en CPU. |
+| 2026-10-22 | Drive con permiso `drive.file` y correo con Gmail `gmail.send` (OAuth de la cuenta del dueño) | SMTP con contraseña de aplicación | Un solo inicio de sesión de Google; el bot solo ve los archivos que crea; sin guardar contraseñas. |
+| 2026-10-22 | El enlace de Drive solo se muestra al dueño; a los demás se les dice que está guardado | enlace a todos | Los demás no pueden abrir el Drive del dueño. Ajusta spec #1. |
+| 2026-10-22 | Cuando alguien sin acceso escribe, el dueño recibe un aviso con su nombre y el comando para autorizarle (sin el contenido) | sin aviso | El dueño no técnico no tiene otra forma fácil de saber el número de esa persona. |

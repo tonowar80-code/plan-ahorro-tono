@@ -1,0 +1,35 @@
+version: 1
+project:
+  root: .
+  stacks: [python]
+  package_managers: [uv]
+  monorepo: false
+  signals:
+    - "greenfield: no code before 2026-10-22; stack fixed by constitution v1.0.0 §1"
+    - "dev container has Python 3.13; constitution floor is Python 3.12 (requires-python >=3.12)"
+sdd:
+  artifact_store: 02-DOCS/wiki/sdd
+  execution_mode: autopilot   # owner said «Hazlo todo tú solo» on 2026-10-22 for transcribir-notas-de-voz
+  registry_path: .rsc/skill-registry.json
+  review_budget:
+    line_budget: 400
+    file_budget: 12
+  delivery_strategy:
+    default: ask-on-risk
+testing:
+  strict_tdd: true
+  runners: [pytest]
+  commands:
+    apply: ["uv sync"]
+    verify: ["scripts/verify.sh"]
+phase_rules:
+  proposal: optional-on-ambiguity
+  specify: requires intent or proposal
+  plan: requires spec
+  tasks: requires plan and spec
+  analyze: requires spec plan tasks
+  implement: requires analyze pass, strict_tdd when testing.strict_tdd is true
+  verify: requires spec tasks evidence
+  archive: requires verify record and review/ship outcome
+models:
+  enabled: false

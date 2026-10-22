@@ -73,7 +73,8 @@ Tampoco deja una copia ordenada por persona. Por eso no basta si llegan audios c
 
 ## Acceptance criteria
 - Given una persona autorizada, When manda una nota de voz en español, Then recibe en Telegram un
-  aviso de recepción y, después, el texto transcrito y un enlace a Drive.
+  aviso de recepción y, después, el texto transcrito; si es el dueño, también un enlace a Drive (los
+  demás reciben aviso de que está guardado).
 - Given una nota de voz procesada, When el dueño abre su Google Drive, Then dentro de la carpeta de la persona
   que la envió existen un documento de Google Docs con la transcripción y el audio original, ambos
   con fecha y hora en el nombre.
@@ -114,3 +115,7 @@ Tampoco deja una copia ordenada por persona. Por eso no basta si llegan audios c
 - 2026-10-22 — ¿Se guarda el audio original? → Sí, texto y audio original en Drive.
 - 2026-10-22 — ¿Formato en Drive? → Documento de Google Docs.
 - 2026-10-22 — ¿Cómo se autoriza a una persona? → Con un comando en el propio bot, solo el dueño.
+
+## Revisions
+- 2026-10-22 (plan) — Criterio #1: el enlace de Drive solo se muestra al dueño, porque los demás no
+  pueden abrir su Drive. Se avisa al dueño cuando alguien sin acceso escribe (sin el contenido).
